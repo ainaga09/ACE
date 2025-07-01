@@ -2,33 +2,33 @@
 
 ```mermaid
 graph TD
-  %% --- ユーザー環境 ---
+  %% ユーザー端末
   subgraph Client["ユーザー端末"]
-    SP[スマートフォン<br>(iOS/Android)]
+    SP[スマートフォン (iOS/Android)]
     PC[PCブラウザ]
   end
 
-  %% --- インターネット経由でアクセス ---
+  %% インターネット
+  subgraph Network["インターネット"]
+    Internet[インターネット (HTTPS)]
+  end
+
   SP --> Internet
   PC --> Internet
 
-  subgraph Network["インターネット"]
-    Internet[インターネット<br>(HTTPS)]
-  end
-
-  %% --- フロントエンド ---
+  %% フロントエンド
   subgraph Frontend["フロントエンド（ECサイト）"]
-    FE[Web UI<br>（レスポンシブ対応）]
+    FE[Web UI（レスポンシブ対応）]
   end
 
   Internet --> FE
 
-  %% --- バックエンドとAPI ---
+  %% バックエンド
   subgraph Backend["バックエンド（APIサーバー）"]
-    API[アプリケーションサーバー<br>(商品／注文／在庫処理)]
-    Auth[会員管理・認証<br>（任意実装）]
-    Order[受注処理ロジック]
-    Product[商品管理ロジック]
+    API[アプリケーションサーバー]
+    Auth[会員管理・認証（任意）]
+    Order[受注処理]
+    Product[商品管理]
   end
 
   FE --> API
@@ -36,12 +36,12 @@ graph TD
   API --> Order
   API --> Auth
 
-  %% --- データベース ---
+  %% データベース
   subgraph Database["データベース"]
     DB1[(商品情報)]
     DB2[(注文情報)]
     DB3[(在庫情報)]
-    DB4[(ユーザー情報)<br>※任意実装]
+    DB4[(ユーザー情報)]
   end
 
   Product --> DB1
@@ -49,23 +49,23 @@ graph TD
   Order --> DB3
   Auth --> DB4
 
-  %% --- 管理者向け ---
+  %% 管理画面
   subgraph Admin["管理者（店舗スタッフ）"]
-    AdminUI[管理画面<br>（商品・受注管理）]
+    AdminUI[管理画面（商品・受注管理）]
   end
 
   AdminUI --> Internet
-  Internet --> FE
   AdminUI --> FE
   AdminUI --> API
 
-  %% --- 将来拡張機能（Optional） ---
+  %% 将来拡張
   subgraph Optional["将来拡張機能"]
     Payment[決済システム（外部連携）]
     Review[レビュー機能]
   end
 
-  style Optional fill:#f9f9f9,stroke-dasharray: 5 5
+  style Optional fill:#f0f0f0,stroke-dasharray: 5 5
 
   API -.-> Payment
   API -.-> Review
+```
