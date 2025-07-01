@@ -5,6 +5,7 @@ erDiagram
     PRODUCT ||--o{ CART_ITEM : has
     CART ||--o{ CART_ITEM : contains
     CUSTOMER ||--o| CART : has_one
+    PRODUCT ||--o{ PRODUCT_IMAGE : has
 
     CUSTOMER {
         string customer_id PK "顧客ID（会員登録者）"
@@ -23,9 +24,16 @@ erDiagram
         text description "商品説明"
         text material "素材"
         decimal price "価格"
-        string image_url "商品画像URL"
         datetime created_at "登録日時"
         datetime updated_at "更新日時"
+    }
+
+    PRODUCT_IMAGE {
+        string image_id PK "画像ID"
+        string product_id FK "商品ID"
+        string image_url "画像URL"
+        int display_order "表示順序"
+        boolean is_main "メイン画像フラグ"
     }
 
     ORDER {
