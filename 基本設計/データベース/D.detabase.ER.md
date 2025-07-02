@@ -1,3 +1,4 @@
+<div class="mermaid">
 erDiagram
     CUSTOMER ||--o{ ORDER : has
     ORDER ||--o{ ORDER_ITEM : contains
