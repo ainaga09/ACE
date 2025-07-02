@@ -25,6 +25,7 @@ erDiagram
         text description "商品説明"
         text material "素材"
         decimal price "価格"
+        integer stock_quantity "在庫数"
         datetime created_at "登録日時"
         datetime updated_at "更新日時"
     }
