@@ -1,3 +1,4 @@
+このER図は、ECサイトの顧客・商品・カート・注文情報の構造と、それらの関係性（1対多や多対多）を示したものです。
 <div class="mermaid">
 erDiagram
     CUSTOMER ||--o{ ORDER : has
